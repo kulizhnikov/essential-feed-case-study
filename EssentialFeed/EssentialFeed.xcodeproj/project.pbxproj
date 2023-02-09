@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B325B4B29948B9500F39165 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B325B4A29948B9500F39165 /* HTTPClient.swift */; };
 		6B7A547929909F83009D8BAC /* EssentialFeed.docc in Sources */ = {isa = PBXBuildFile; fileRef = 6B7A547829909F83009D8BAC /* EssentialFeed.docc */; };
 		6B7A547F29909F83009D8BAC /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B7A547429909F83009D8BAC /* EssentialFeed.framework */; };
 		6B7A548429909F83009D8BAC /* EssentialFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7A548329909F83009D8BAC /* EssentialFeedTests.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B325B4A29948B9500F39165 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		6B7A547429909F83009D8BAC /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B7A547729909F83009D8BAC /* EssentialFeed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EssentialFeed.h; sourceTree = "<group>"; };
 		6B7A547829909F83009D8BAC /* EssentialFeed.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = EssentialFeed.docc; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				6B7A54962990B83E009D8BAC /* RemoteFeedLoader.swift */,
+				6B325B4A29948B9500F39165 /* HTTPClient.swift */,
 			);
 			path = "Feed API";
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B7A54972990B83E009D8BAC /* RemoteFeedLoader.swift in Sources */,
+				6B325B4B29948B9500F39165 /* HTTPClient.swift in Sources */,
 				6B7A54912990A064009D8BAC /* FeedLoader.swift in Sources */,
 				6B7A548F29909FEA009D8BAC /* FeedItem.swift in Sources */,
 				6B7A547929909F83009D8BAC /* EssentialFeed.docc in Sources */,
