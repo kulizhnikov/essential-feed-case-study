@@ -16,7 +16,7 @@ public final class RemoteFeedLoader {
 		case invalidData
 	}
 
-	public typealias Result = Swift.Result<[FeedItem], Error>
+	public typealias Result = LoadFeedResult<Error>
 
 	public init(url: URL, client: HTTPClient) {
 		self.url = url
@@ -32,7 +32,7 @@ public final class RemoteFeedLoader {
 				completion(FeedItemsMapper.map(data, response: response))
 
 			case .failure:
-				completion(.failure(.connectivity))
+				completion(.failure(Error.connectivity))
 			}
 		}
 	}
