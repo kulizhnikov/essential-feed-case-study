@@ -29,11 +29,15 @@ class URLSessionHTTPClient {
 }
 
 final class URLSessionHTTPClientTests: XCTestCase {
-	override class func setUp() {
+	override func setUp() {
+		super.setUp()
+
 		URLProtocolStub.startInterceptingRequests()
 	}
 
-	override class func tearDown() {
+	override func tearDown() {
+		super.tearDown()
+		
 		URLProtocolStub.stopInterceptingRequests()
 	}
 
@@ -142,7 +146,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
 			stub = Stub(data: data, response: response, error: error)
 		}
 
-		static func observeRequests(_ observer: ((URLRequest) -> Void)?) {
+		static func observeRequests(_ observer: @escaping ((URLRequest) -> Void)) {
 			requestObserver = observer
 		}
 
