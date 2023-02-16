@@ -78,7 +78,7 @@ final class CacheFeedUseCaseTests: XCTestCase {
 	func test_save_doesNotCallCompletionWithDeletionErrorAfterDeallocation() {
 		var (sut, store): (LocalFeedLoader?, FeedStoreSpy?) = makeSUT()
 
-		var receivedResults: [Error?] = []
+		var receivedResults: [LocalFeedLoader.SaveResult] = []
 		sut?.save([uniqueItem()], completion: { error in
 			receivedResults.append(error)
 		})
@@ -92,7 +92,7 @@ final class CacheFeedUseCaseTests: XCTestCase {
 	func test_save_doesNotCallCompletionWithInsertionErrorAfterDeallocation() {
 		var (sut, store): (LocalFeedLoader?, FeedStoreSpy?) = makeSUT()
 
-		var receivedResults: [Error?] = []
+		var receivedResults: [LocalFeedLoader.SaveResult] = []
 		sut?.save([uniqueItem()], completion: { error in
 			receivedResults.append(error)
 		})
