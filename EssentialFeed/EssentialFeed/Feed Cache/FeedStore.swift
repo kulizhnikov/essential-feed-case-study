@@ -8,7 +8,7 @@
 import Foundation
 
 public enum RetrieveCachedFeedResult {
-	case empy
+	case empty
 	case found(feed: [LocalFeedImage], timestamp: Date)
 	case failure(Error)
 }
