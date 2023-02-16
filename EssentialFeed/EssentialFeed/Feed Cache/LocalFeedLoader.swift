@@ -41,6 +41,7 @@ public final class LocalFeedLoader {
 				completion(.success(feed.toModels()))
 				
 			case let .failure(error):
+				self.store.deleteCachedFeed { _ in }
 				completion(.failure(error))
 
 			case .empy, .found:
