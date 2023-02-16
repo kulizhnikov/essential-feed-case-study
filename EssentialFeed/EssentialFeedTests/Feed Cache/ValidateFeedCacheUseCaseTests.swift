@@ -34,6 +34,18 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
 		XCTAssertEqual(store.receivedMessages, [.retrieve])
 	}
 
+	func test_validateCache_doesNotDeleteLessThanSevenDaysOldCache() {
+		let feed = uniqueImageFeed()
+		let fixedCurrentDate = Date()
+		let lessThanSevenDaysOldTime = fixedCurrentDate.adding(days: -7).adding(seconds: 1)
+		let (sut, store) = makeSUT()
+
+		sut.validateCache()
+		store.completeRetrieval(with: feed.local, timestamp: lessThanSevenDaysOldTime)
+
+		XCTAssertEqual(store.receivedMessages, [.retrieve])
+	}
+
 	// MARK: - Helpers
 	private func makeSUT(
 		currentDate: @escaping () -> Date = Date.init,
@@ -45,9 +57,5 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
 		trackForMemoryLeaks(store)
 		trackForMemoryLeaks(sut)
 		return (sut, store)
-	}
-
-	private func anyNSError() -> NSError {
-		NSError(domain: "any error", code: 0)
 	}
 }
