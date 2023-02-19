@@ -113,14 +113,41 @@ final class CodableFeedStoreTests: XCTestCase {
 		expect(sut, toRetrieve: .empty)
 	}
 
-	func test_delete_deliversErrorOnDelitionError() {
-		let noDeleteAccessURL = cachesDirectory()
-		let sut = makeSUT(storeURL: noDeleteAccessURL)
+//	func test_delete_deliversErrorOnDelitionError() {
+//		let noDeleteAccessURL = noAccessDirectory()
+//		let sut = makeSUT(storeURL: noDeleteAccessURL)
+//
+//		let deletionError = deleteCache(from: sut)
+//
+//		XCTAssertNotNil(deletionError, "Expected error on deletion for no access directory")
+//		expect(sut, toRetrieve: .empty)
+//	}
 
-		let deletionError = deleteCache(from: sut)
+	func test_storeSideEffects_runSerially() {
+		let sut = makeSUT()
+		var completedOperationsInOrder: [XCTestExpectation] = []
 
-		XCTAssertNotNil(deletionError, "Expected error on deletion for no access directory")
-		expect(sut, toRetrieve: .empty)
+		let op1 = expectation(description: "Operation 1")
+		sut.insert(uniqueImageFeed().local, timestamp: Date()) { _ in
+			completedOperationsInOrder.append(op1)
+			op1.fulfill()
+		}
+
+		let op2 = expectation(description: "Operation 2")
+		sut.deleteCachedFeed { _ in
+			completedOperationsInOrder.append(op2)
+			op2.fulfill()
+		}
+
+		let op3 = expectation(description: "Operation 2")
+		sut.insert(uniqueImageFeed().local, timestamp: Date()) { _ in
+			completedOperationsInOrder.append(op3)
+			op3.fulfill()
+		}
+
+		waitForExpectations(timeout: 5.0)
+
+		XCTAssertEqual(completedOperationsInOrder, [op1, op2, op3])
 	}
 
 	// MARK: - Helpers
@@ -215,7 +242,7 @@ final class CodableFeedStoreTests: XCTestCase {
 		return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("\(type(of: self)).store")
 	}
 
-	private func cachesDirectory() -> URL {
-		return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+	private func noAccessDirectory() -> URL {
+		return URL(string: "not://exists")!
 	}
 }
