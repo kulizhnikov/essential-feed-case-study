@@ -113,15 +113,15 @@ final class CodableFeedStoreTests: XCTestCase {
 		expect(sut, toRetrieve: .empty)
 	}
 
-//	func test_delete_deliversErrorOnDelitionError() {
-//		let noDeleteAccessURL = noAccessDirectory()
-//		let sut = makeSUT(storeURL: noDeleteAccessURL)
-//
-//		let deletionError = deleteCache(from: sut)
-//
-//		XCTAssertNotNil(deletionError, "Expected error on deletion for no access directory")
-//		expect(sut, toRetrieve: .empty)
-//	}
+	func test_delete_deliversErrorOnDelitionError() {
+		let noDeleteAccessURL = noAccessDirectory()
+		let sut = makeSUT(storeURL: noDeleteAccessURL)
+
+		let deletionError = deleteCache(from: sut)
+
+		XCTAssertNotNil(deletionError, "Expected error on deletion for no access directory")
+		expect(sut, toRetrieve: .empty)
+	}
 
 	func test_storeSideEffects_runSerially() {
 		let sut = makeSUT()
@@ -243,6 +243,6 @@ final class CodableFeedStoreTests: XCTestCase {
 	}
 
 	private func noAccessDirectory() -> URL {
-		return URL(string: "not://exists")!
+		return FileManager.default.urls(for: .cachesDirectory, in: .systemDomainMask).first!
 	}
 }
