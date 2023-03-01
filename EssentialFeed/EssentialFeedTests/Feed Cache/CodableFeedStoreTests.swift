@@ -8,6 +8,35 @@
 import XCTest
 import EssentialFeed
 
+protocol FeedStoreSpecs {
+	func test_retrieve_deliversEmptyOnEmptyCache()
+	func test_retrieve_hasNoSideEffectsOnEmptyCache()
+	func test_retrieve_deliversFoundValuesOnNonEmptyCache()
+	func test_retrieve_hasNoSideEffectsOnNonEmptyCache()
+
+	func test_insert_overridePreviouslyInsertedCacheValues()
+
+	func test_delete_hasNoSideEffectsOnEmptyCache()
+	func test_delete_emptiesPreviouslyInsertedCache()
+
+	func test_storeSideEffects_runSerially()
+}
+
+protocol FailableRetrieveFeedStoreSpecs {
+	func test_retrive_deliversFailureOnRetrievalError()
+	func test_retrieve_hasNoSideEffectsOnFailure()
+}
+
+protocol FailableInsertFeedStoreSpecs {
+	func test_insert_deliversErrorOnInsertionError()
+	func test_insert_hasNoSideEffectsOnInsertionError()
+}
+
+protocol FailableDeleteFeedStoreSpecs {
+	func test_delete_deliversErrorOnDelitionError()
+	func test_delete_hasNoSideEffectsOnDelitionError()
+}
+
 final class CodableFeedStoreTests: XCTestCase {
 
 	override func setUp() {
@@ -94,6 +123,15 @@ final class CodableFeedStoreTests: XCTestCase {
 		XCTAssertNotNil(insertionError, "Expected cache insertion to fail with an error")
 	}
 
+	func test_insert_hasNoSideEffectsOnInsertionError() {
+		let invalidStoreURL = URL(string: "invalid://store-url")!
+		let sut = makeSUT(storeURL: invalidStoreURL)
+
+		insert((uniqueImageFeed().local, Date()), to: sut)
+
+		expect(sut, toRetrieve: .empty)
+	}
+
 	func test_delete_hasNoSideEffectsOnEmptyCache() {
 		let sut = makeSUT()
 
@@ -120,6 +158,14 @@ final class CodableFeedStoreTests: XCTestCase {
 		let deletionError = deleteCache(from: sut)
 
 		XCTAssertNotNil(deletionError, "Expected error on deletion for no access directory")
+	}
+
+	func test_delete_hasNoSideEffectsOnDelitionError() {
+		let noDeleteAccessURL = noAccessDirectory()
+		let sut = makeSUT(storeURL: noDeleteAccessURL)
+
+		deleteCache(from: sut)
+
 		expect(sut, toRetrieve: .empty)
 	}
 
@@ -176,6 +222,7 @@ final class CodableFeedStoreTests: XCTestCase {
 
 	}
 
+	@discardableResult
 	private func deleteCache(from sut: FeedStore) -> Error? {
 		let exp = expectation(description: "Wait for cache deletion")
 		var deletionError: Error?
