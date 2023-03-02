@@ -150,8 +150,8 @@
 				6B6FFE47299E230C009C2AED /* LoadFeedFromCacheUseCaseTests.swift */,
 				6B6FFE4C299E836B009C2AED /* ValidateFeedCacheUseCaseTests.swift */,
 				6B5502DB299F9E4F0001C757 /* CodableFeedStoreTests.swift */,
-				6B38331129AFE712004C9F66 /* XCTestCase+FeedStoreSpecs.swift */,
 				6B38330F29AFE576004C9F66 /* FeedStoreSpecs.swift */,
+				6B38331129AFE712004C9F66 /* XCTestCase+FeedStoreSpecs.swift */,
 			);
 			path = "Feed Cache";
 			sourceTree = "<group>";
