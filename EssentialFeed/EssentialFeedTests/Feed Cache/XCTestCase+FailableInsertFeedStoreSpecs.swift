@@ -16,7 +16,7 @@ extension FailableInsertFeedStoreSpecs where Self: XCTestCase {
 	) {
 		insert((uniqueImageFeed().local, Date()), to: sut)
 
-		expect(sut, toRetrieveTwice: .empty)
+		expect(sut, toRetrieve: .empty, file: file, line: line)
 	}
 
 	func assertThatInsertDeliversFailureOnInsertionError(
@@ -25,6 +25,7 @@ extension FailableInsertFeedStoreSpecs where Self: XCTestCase {
 		line: UInt = #line
 	) {
 		let insertionError = insert((uniqueImageFeed().local, Date()), to: sut)
-		XCTAssertNotNil(insertionError, "Expected cache insertion to fail with an error")
+		
+		XCTAssertNotNil(insertionError, "Expected cache insertion to fail with an error", file: file, line: line)
 	}
 }

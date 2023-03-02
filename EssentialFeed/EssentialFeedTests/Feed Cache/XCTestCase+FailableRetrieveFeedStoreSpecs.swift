@@ -14,7 +14,7 @@ extension FailableRetrieveFeedStoreSpecs where Self: XCTestCase {
 		file: StaticString = #filePath,
 		line: UInt = #line
 	) {
-		expect(sut, toRetrieveTwice: .failure(anyNSError()))
+		expect(sut, toRetrieveTwice: .failure(anyNSError()), file: file, line: line)
 	}
 
 	func assertThatRetriveDeliversFailureOnRetrievalError(
@@ -22,6 +22,6 @@ extension FailableRetrieveFeedStoreSpecs where Self: XCTestCase {
 		file: StaticString = #filePath,
 		line: UInt = #line
 	) {
-		expect(sut, toRetrieve: .failure(anyNSError()))
+		expect(sut, toRetrieve: .failure(anyNSError()), file: file, line: line)
 	}
 }

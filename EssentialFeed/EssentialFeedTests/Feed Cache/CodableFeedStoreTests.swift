@@ -124,18 +124,14 @@ final class CodableFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
 		let noDeleteAccessURL = noAccessDirectory()
 		let sut = makeSUT(storeURL: noDeleteAccessURL)
 
-		let deletionError = deleteCache(from: sut)
-
-		XCTAssertNotNil(deletionError, "Expected error on deletion for no access directory")
+		assertThatDeleteDeliversFailureOnDeletionError(on: sut)
 	}
 
 	func test_delete_hasNoSideEffectsOnDelitionError() {
 		let noDeleteAccessURL = noAccessDirectory()
 		let sut = makeSUT(storeURL: noDeleteAccessURL)
 
-		deleteCache(from: sut)
-
-		expect(sut, toRetrieve: .empty)
+		assertThatDeleteHasNoSideEffectsOnFailure(on: sut)
 	}
 
 	func test_storeSideEffects_runSerially() {
