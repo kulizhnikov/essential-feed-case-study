@@ -7,7 +7,7 @@
 
 import CoreData
 
-private extension NSPersistentContainer {
+extension NSPersistentContainer {
 	enum LoadingError: Swift.Error {
 		case modelNotFound
 		case failedToLoadPersistentStores(Swift.Error)
@@ -30,7 +30,7 @@ private extension NSPersistentContainer {
 	}
 }
 
-private extension NSManagedObjectModel {
+extension NSManagedObjectModel {
 	static func with(name: String, in bundle: Bundle) -> NSManagedObjectModel? {
 		return bundle
 			.url(forResource: name, withExtension: "momd")
