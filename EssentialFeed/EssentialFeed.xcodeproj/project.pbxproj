@@ -43,6 +43,7 @@
 		6B7A54942990A3EA009D8BAC /* LoadFeedFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7A54932990A3EA009D8BAC /* LoadFeedFromRemoteUseCaseTests.swift */; };
 		6B7A54972990B83E009D8BAC /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7A54962990B83E009D8BAC /* RemoteFeedLoader.swift */; };
 		6B91ED7F29A1CF6D00A2A75D /* CodableFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B91ED7E29A1CF6D00A2A75D /* CodableFeedStore.swift */; };
+		6BF5F5D329B29126007C2218 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF5F5D229B29126007C2218 /* CoreDataHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		6B7A54932990A3EA009D8BAC /* LoadFeedFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFeedFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		6B7A54962990B83E009D8BAC /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		6B91ED7E29A1CF6D00A2A75D /* CodableFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableFeedStore.swift; sourceTree = "<group>"; };
+		6BF5F5D229B29126007C2218 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,11 +269,20 @@
 		6BF5F5D029B2908D007C2218 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				6BF5F5D129B29109007C2218 /* CoreData */,
 				6B91ED7E29A1CF6D00A2A75D /* CodableFeedStore.swift */,
-				6B2CF6F729B26299006E9F09 /* CoreDataFeedStore.swift */,
-				6B2CF6F929B267E5006E9F09 /* FeedStore.xcdatamodeld */,
 			);
 			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		6BF5F5D129B29109007C2218 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6B2CF6F729B26299006E9F09 /* CoreDataFeedStore.swift */,
+				6BF5F5D229B29126007C2218 /* CoreDataHelpers.swift */,
+				6B2CF6F929B267E5006E9F09 /* FeedStore.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,6 +438,7 @@
 				6B7A54972990B83E009D8BAC /* RemoteFeedLoader.swift in Sources */,
 				6B325B592997558C00F39165 /* URLSesionHTTPClient.swift in Sources */,
 				6B325B4B29948B9500F39165 /* HTTPClient.swift in Sources */,
+				6BF5F5D329B29126007C2218 /* CoreDataHelpers.swift in Sources */,
 				6B7A54912990A064009D8BAC /* FeedLoader.swift in Sources */,
 				6B2CF6F829B26299006E9F09 /* CoreDataFeedStore.swift in Sources */,
 				6B325B4D29948BE700F39165 /* FeedItemsMapper.swift in Sources */,
