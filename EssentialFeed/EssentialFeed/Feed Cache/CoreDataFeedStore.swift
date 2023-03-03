@@ -35,6 +35,8 @@ public final class CoreDataFeedStore: FeedStore {
 		let context = context
 		context.perform {
 			do {
+				try ManagedCache.deleteIfAny(in: context)
+				
 				let managedCache = ManagedCache(context: context)
 				managedCache.timestamp = timestamp
 				managedCache.feed = ManagedFeedImage.images(from: feed, in: context)
@@ -99,6 +101,12 @@ private class ManagedCache: NSManagedObject {
 		let request = NSFetchRequest<ManagedCache>(entityName: ManagedCache.entity().name!)
 		request.returnsObjectsAsFaults = false
 		return try context.fetch(request).first
+	}
+
+	static func deleteIfAny(in context: NSManagedObjectContext) throws {
+		guard let cache = try find(in: context) else { return }
+
+		context.delete(cache)
 	}
 }
 
