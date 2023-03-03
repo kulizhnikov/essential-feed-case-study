@@ -151,7 +151,7 @@ extension FeedStoreSpecs where Self: XCTestCase {
 			op2.fulfill()
 		}
 
-		let op3 = expectation(description: "Operation 2")
+		let op3 = expectation(description: "Operation 3")
 		sut.insert(uniqueImageFeed().local, timestamp: Date()) { _ in
 			completedOperationsInOrder.append(op3)
 			op3.fulfill()
