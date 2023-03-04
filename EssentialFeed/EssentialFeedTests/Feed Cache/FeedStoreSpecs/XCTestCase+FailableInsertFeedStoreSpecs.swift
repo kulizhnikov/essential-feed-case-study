@@ -1,5 +1,5 @@
 //
-//  XCTestCase+FailableRetrieveFeedStoreSpecs.swift
+//  XCTestCase+FailableInsertFeedStoreSpecs.swift
 //  EssentialFeedTests
 //
 //  Created by Dmitry Kulizhnikov on 03.03.2023.
