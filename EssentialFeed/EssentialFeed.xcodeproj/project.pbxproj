@@ -50,6 +50,7 @@
 		6BF5F5E929B34A82007C2218 /* FeedCacheTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6FFE4E299E8885009C2AED /* FeedCacheTestHelpers.swift */; };
 		6BF5F5EA29B34AA0007C2218 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6FFE50299E8934009C2AED /* SharedTestHelpers.swift */; };
 		6BF5F60129B52B53007C2218 /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF5F5F729B52B52007C2218 /* EssentialFeediOS.framework */; };
+		6BF5F60F29B659CC007C2218 /* FeedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF5F60E29B659CC007C2218 /* FeedViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		6BF5F5DE29B2991E007C2218 /* EssentialFeedCacheIntegraionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedCacheIntegraionTests.swift; sourceTree = "<group>"; };
 		6BF5F5F729B52B52007C2218 /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BF5F60029B52B52007C2218 /* EssentialFeediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BF5F60E29B659CC007C2218 /* FeedViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,6 +358,7 @@
 		6BF5F60429B52B53007C2218 /* EssentialFeediOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				6BF5F60E29B659CC007C2218 /* FeedViewControllerTests.swift */,
 			);
 			path = EssentialFeediOSTests;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 					};
 					6BF5F5FF29B52B52007C2218 = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -665,6 +669,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BF5F60F29B659CC007C2218 /* FeedViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1049,16 +1054,23 @@
 		6BF5F60C29B52B53007C2218 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CG4WBF9GA2;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.kulizhnikov.EssentialFeediOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1067,11 +1079,17 @@
 		6BF5F60D29B52B53007C2218 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CG4WBF9GA2;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.kulizhnikov.EssentialFeediOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
