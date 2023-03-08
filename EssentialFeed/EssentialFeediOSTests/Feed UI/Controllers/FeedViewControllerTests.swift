@@ -223,22 +223,6 @@ final class FeedViewControllerTests: XCTestCase {
 		XCTAssertEqual(loader.loadedImageURLs, [image0.url, image1.url], "Expected second image URL request once second view is near visible")
 	}
 
-//	func test_feedImageView_loadImageURLDoesNotCalledTwiceAfterPrefetchAndThenVisible() {
-//		let image0 = makeImage(url: URL(string: "http://url-0.com")!)
-//		let (sut, loader) = makeSUT()
-//
-//		sut.loadViewIfNeeded()
-//		loader.completeFeedLoading(with: [image0])
-//		XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until image is near visible")
-//
-//		sut.simulateFeedImageViewNearVisible(at: 0)
-//		XCTAssertEqual(loader.loadedImageURLs, [image0.url], "Expected first image URL request once first view is near visible")
-//
-//		sut.simulateFeedImageViewVisible(at: 0)
-//		XCTAssertEqual(loader.loadedImageURLs, [image0.url], "Expected only first image URL request once first view is transitioned to visible")
-//		XCTAssertEqual(loader.cancelledImageURLs, [], "Expected no cancelled requests for first view")
-//	}
-
 	func test_feedImageView_cancelsPreloadImageURLWhenNotNearVisibleAnymore() {
 		let image0 = makeImage(url: URL(string: "http://url-0.com")!)
 		let image1 = makeImage(url: URL(string: "http://url-1.com")!)
@@ -261,7 +245,7 @@ final class FeedViewControllerTests: XCTestCase {
 		line: UInt = #line
 	) -> (sut: FeedViewController, loader: LoaderSpy) {
 		let loader = LoaderSpy()
-		let sut = FeedViewController(feedLoader: loader, imageLoader: loader)
+		let sut = FeedUIComposer.feedComposedWith(feedLoader: loader, imageLoader: loader)
 
 		trackForMemoryLeaks(loader, file: file, line: line)
 		trackForMemoryLeaks(sut, file: file, line: line)
