@@ -26,7 +26,7 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedImageCell" rowHeight="540" id="tP1-81-Fgk">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedImageCell" rowHeight="540" id="tP1-81-Fgk" customClass="FeedImageCell" customModule="EssentialFeediOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="66" width="393" height="540"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tP1-81-Fgk" id="J7T-va-nvC">
@@ -70,14 +70,26 @@ location</string>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ExV-ky-Veo">
                                                             <rect key="frame" x="0.0" y="0.0" width="353" height="353"/>
                                                         </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upz-Jv-JeV">
+                                                            <rect key="frame" x="0.0" y="0.0" width="353" height="353"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain" title="↻">
+                                                                <fontDescription key="titleFontDescription" type="system" pointSize="60"/>
+                                                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </buttonConfiguration>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="ExV-ky-Veo" firstAttribute="top" secondItem="jPj-sl-jbQ" secondAttribute="top" id="41c-77-yxH"/>
+                                                        <constraint firstItem="upz-Jv-JeV" firstAttribute="leading" secondItem="jPj-sl-jbQ" secondAttribute="leading" id="7bT-f0-Yf0"/>
+                                                        <constraint firstItem="upz-Jv-JeV" firstAttribute="top" secondItem="jPj-sl-jbQ" secondAttribute="top" id="Ykd-wm-eao"/>
                                                         <constraint firstAttribute="bottom" secondItem="ExV-ky-Veo" secondAttribute="bottom" id="djV-17-quB"/>
                                                         <constraint firstItem="ExV-ky-Veo" firstAttribute="leading" secondItem="jPj-sl-jbQ" secondAttribute="leading" id="lgW-ur-8XD"/>
                                                         <constraint firstAttribute="width" secondItem="jPj-sl-jbQ" secondAttribute="height" multiplier="1:1" id="otZ-2t-ZlV"/>
                                                         <constraint firstAttribute="trailing" secondItem="ExV-ky-Veo" secondAttribute="trailing" id="p1z-cJ-eJM"/>
+                                                        <constraint firstAttribute="bottom" secondItem="upz-Jv-JeV" secondAttribute="bottom" id="ufb-rY-PdE"/>
+                                                        <constraint firstAttribute="trailing" secondItem="upz-Jv-JeV" secondAttribute="trailing" id="vI6-bJ-mso"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRaius">
