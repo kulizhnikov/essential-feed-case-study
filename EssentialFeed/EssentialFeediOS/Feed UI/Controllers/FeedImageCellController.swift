@@ -39,6 +39,9 @@ final class FeedImageCellController: FeedImageView {
 		guard let cell else { return }
 
 		cell.onRetry = delegate.didRequestImage
+		cell.onReuse = { [weak self] in
+			self?.releaseCellForReuse()
+		}
 		
 		cell.locationContainer.isHidden = !viewModel.hasLocation
 		cell.locationLabel.text = viewModel.location
