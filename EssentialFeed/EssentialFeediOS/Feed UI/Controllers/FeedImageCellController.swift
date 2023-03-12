@@ -37,19 +37,21 @@ final class FeedImageCellController: FeedImageView {
 
 	func display(_ viewModel: FeedImageViewModel<UIImage>) {
 		guard let cell else { return }
+
+		cell.onRetry = delegate.didRequestImage
 		
 		cell.locationContainer.isHidden = !viewModel.hasLocation
 		cell.locationLabel.text = viewModel.location
 		cell.descriptionLabel.text = viewModel.description
-
-		cell.onRetry = delegate.didRequestImage
-
-		cell.feedImageView.image = viewModel.image
 		cell.feedImageContainer.isShimmering = viewModel.isLoading
 		cell.feedImageRetryButton.isHidden = !viewModel.shouldRetry
+
+		cell.feedImageView.setImageAnimated(viewModel.image)
 	}
 
 	private func releaseCellForReuse() {
 		cell = nil
 	}
 }
+
+
