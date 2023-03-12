@@ -125,8 +125,22 @@ location</string>
                             <outlet property="delegate" destination="Zaw-Jd-1Ug" id="SuQ-Ok-rQR"/>
                         </connections>
                     </tableView>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="uWA-fA-pIm">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refresh" destination="WeA-LI-9sq" eventType="valueChanged" id="5Lp-kz-Tb8"/>
+                        </connections>
+                    </refreshControl>
+                    <connections>
+                        <outlet property="refreshController" destination="WeA-LI-9sq" id="WEb-Tm-7Vm"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ea6-ZI-UWj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="WeA-LI-9sq" customClass="FeedRefreshViewController" customModule="EssentialFeediOS" customModuleProvider="target">
+                    <connections>
+                        <outlet property="view" destination="uWA-fA-pIm" id="1uO-Ss-zcO"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="420.61068702290072" y="-16.197183098591552"/>
         </scene>
