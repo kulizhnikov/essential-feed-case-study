@@ -123,6 +123,7 @@ location</string>
                         <connections>
                             <outlet property="dataSource" destination="Zaw-Jd-1Ug" id="Hh5-ru-j2A"/>
                             <outlet property="delegate" destination="Zaw-Jd-1Ug" id="SuQ-Ok-rQR"/>
+                            <outlet property="prefetchDataSource" destination="Zaw-Jd-1Ug" id="APX-ae-UNJ"/>
                         </connections>
                     </tableView>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="uWA-fA-pIm">
