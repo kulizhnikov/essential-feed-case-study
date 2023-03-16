@@ -24,7 +24,8 @@ public final class FeedUIComposer {
 				controller: feedController,
 				imageLoader: MainQueueDispatchDecorator(decoratee: imageLoader)
 			),
-			loadingView: WeakRefVirtualProxy(feedController)
+			loadingView: WeakRefVirtualProxy(feedController),
+			errorView: WeakRefVirtualProxy(feedController)
 		)
 		presentationAdapter.presenter = presenter
 
@@ -63,6 +64,13 @@ extension WeakRefVirtualProxy: FeedImageView where T: FeedImageView, T.Image == 
 		object?.display(model)
 	}
 }
+
+extension WeakRefVirtualProxy: FeedErrorView where T: FeedErrorView {
+	func display(_ viewModel: FeedErrorViewModel) {
+		object?.display(viewModel)
+	}
+}
+
 
 private final class FeedViewAdapter: FeedView {
 	private weak var controller: FeedViewController?
