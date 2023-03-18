@@ -35,6 +35,9 @@ extension CoreDataFeedStore: FeedStore {
 		perform { context in
 			completion( Result {
 				try ManagedCache.deleteIfAny(in: context)
+				if context.hasChanges {
+					try context.save()
+				}
 			})
 		}
 	}
