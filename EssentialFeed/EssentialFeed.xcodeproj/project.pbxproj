@@ -217,6 +217,7 @@
 		6B7E0DB229C590420067A8DD /* FeedImageDataStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataStoreSpy.swift; sourceTree = "<group>"; };
 		6B7E0DB429C590F60067A8DD /* CacheFeedImageDataUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFeedImageDataUseCaseTests.swift; sourceTree = "<group>"; };
 		6B7E0DB629C604580067A8DD /* CoreDataFeedImageDataStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedImageDataStoreTests.swift; sourceTree = "<group>"; };
+		6B7E0DB829C608300067A8DD /* FeedStore2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FeedStore2.xcdatamodel; sourceTree = "<group>"; };
 		6B9BF8E529C3AEAA008F6627 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Feed.strings; sourceTree = "<group>"; };
 		6B9BF8E729C3AEAD008F6627 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Feed.strings; sourceTree = "<group>"; };
 		6B9BF8E829C3AEAE008F6627 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Feed.strings"; sourceTree = "<group>"; };
@@ -1472,6 +1473,7 @@
 		6B2CF6F929B267E5006E9F09 /* FeedStore.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				6B7E0DB829C608300067A8DD /* FeedStore2.xcdatamodel */,
 				6B2CF6FA29B267E5006E9F09 /* FeedStore.xcdatamodel */,
 			);
 			currentVersion = 6B2CF6FA29B267E5006E9F09 /* FeedStore.xcdatamodel */;
