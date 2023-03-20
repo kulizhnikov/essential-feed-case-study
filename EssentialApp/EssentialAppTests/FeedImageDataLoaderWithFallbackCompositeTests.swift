@@ -102,6 +102,15 @@ final class FeedImageLoaderWithFallbackCompositeTests: XCTestCase {
 		XCTAssertEqual(fallbackLoader.cancelledURLs, [url], "Expected to cancel URL loading from fallback loader")
 	}
 
+	func test_loadImageData_deliversPrimaryDataOnPrimaryLoaderSuccess() {
+		let primaryData = anyData()
+		let (sut, primaryLoader, _) = makeSUT()
+
+		expect(sut, toCompleteWith: .success(primaryData), when: {
+			primaryLoader.complete(with: primaryData)
+		})
+	}
+
 	// MARK: - Helpers
 
 	private func makeSUT(
@@ -120,17 +129,18 @@ final class FeedImageLoaderWithFallbackCompositeTests: XCTestCase {
 	}
 
 	private func expect(
-		_ sut: FeedLoader,
-		toCompleteWith expectedResult: FeedLoader.Result,
+		_ sut: FeedImageDataLoader,
+		toCompleteWith expectedResult: FeedImageDataLoader.Result,
+		when action: () -> Void,
 		file: StaticString = #filePath,
 		line: UInt = #line
 	) {
 		let exp = expectation(description: "Wait for load completion")
-		sut.load { receivedResult in
+		_ = sut.loadImageData(from: anyURL()) { receivedResult in
 			switch (receivedResult, expectedResult) {
 
-			case let (.success(receivedFeed), .success(expectedFeed)):
-				XCTAssertEqual(receivedFeed, expectedFeed, file: file, line: line)
+			case let (.success(receivedImageData), .success(expectedImageData)):
+				XCTAssertEqual(receivedImageData, expectedImageData, file: file, line: line)
 
 			case (.failure, .failure):
 				break
@@ -141,6 +151,8 @@ final class FeedImageLoaderWithFallbackCompositeTests: XCTestCase {
 			exp.fulfill()
 		}
 
+		action()
+		
 		wait(for: [exp], timeout: 1.0)
 	}
 
@@ -150,6 +162,10 @@ final class FeedImageLoaderWithFallbackCompositeTests: XCTestCase {
 
 	private func anyURL() -> URL {
 		return URL(string: "http://a-url.com")!
+	}
+
+	private func anyData() -> Data {
+		return Data("any data".utf8)
 	}
 
 	private class LoaderSpy: FeedImageDataLoader {
@@ -180,6 +196,10 @@ final class FeedImageLoaderWithFallbackCompositeTests: XCTestCase {
 
 		func complete(with error: Error, at index: Int = 0) {
 			messages[index].completion(.failure(error))
+		}
+
+		func complete(with data: Data, at index: Int = 0) {
+			messages[index].completion(.success(data))
 		}
 	}
 
