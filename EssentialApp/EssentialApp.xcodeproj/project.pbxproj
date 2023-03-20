@@ -119,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				6B6A0A7329C8A4D2006581DC /* FeedLoaderWithFallbackComposite.swift */,
+				6B6A0A7529C8A67F006581DC /* FeedImageDataLoaderWithFallbackComposite.swift */,
 				6B83796029C63D9B00DFBEDD /* AppDelegate.swift */,
 				6B83796229C63D9B00DFBEDD /* SceneDelegate.swift */,
 				6B83796429C63D9B00DFBEDD /* ViewController.swift */,
@@ -126,7 +127,6 @@
 				6B83796929C63D9C00DFBEDD /* Assets.xcassets */,
 				6B83796B29C63D9C00DFBEDD /* LaunchScreen.storyboard */,
 				6B83796E29C63D9C00DFBEDD /* Info.plist */,
-				6B6A0A7529C8A67F006581DC /* FeedImageDataLoaderWithFallbackComposite.swift */,
 			);
 			path = EssentialApp;
 			sourceTree = "<group>";
