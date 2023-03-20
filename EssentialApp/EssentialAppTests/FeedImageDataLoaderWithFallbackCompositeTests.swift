@@ -137,15 +137,7 @@ final class FeedImageLoaderWithFallbackCompositeTests: XCTestCase {
 	}
 
 	private func uniqueFeed() -> [FeedImage] {
-		return [FeedImage(id: UUID(), description: "any", location: "any", url: URL(string: "https://any-url.com")!)]
-	}
-
-	private func anyURL() -> URL {
-		return URL(string: "http://a-url.com")!
-	}
-
-	private func anyData() -> Data {
-		return Data("any data".utf8)
+		return [FeedImage(id: UUID(), description: "any", location: "any", url: anyURL())]
 	}
 
 	private class LoaderSpy: FeedImageDataLoader {
