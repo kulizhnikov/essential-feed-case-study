@@ -21,10 +21,16 @@ public class FeedImageDataLoaderCacheDecorator: FeedImageDataLoader {
 			guard let self = self else { return }
 
 			if case let .success(data) = result {
-				self.cache.save(data, for: url) { _ in }
+				self.cache.saveIgnoringResult(data, for: url)
 			}
 
 			completion(result)
 		}
+	}
+}
+
+private extension FeedImageDataCache {
+	func saveIgnoringResult(_ data: Data, for url: URL) {
+		save(data, for: url) { _ in }
 	}
 }
