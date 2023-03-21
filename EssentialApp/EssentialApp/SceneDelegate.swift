@@ -37,7 +37,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 				primary: FeedLoaderCacheDecorator(decoratee: remoteFeedLoader, cache: localFeedLoader),
 				fallback: localFeedLoader
 			),
-			imageLoader: FeedImageDataLoaderWithFallbackComposite(primary: localImageLoader, fallback: remoteImageLoader)
+			imageLoader: FeedImageDataLoaderWithFallbackComposite(
+				primary: localImageLoader,
+				fallback: FeedImageDataLoaderCacheDecorator(decoratee: remoteImageLoader, cache: localImageLoader)
+			)
 		)
 
 		window?.rootViewController = feedViewController
