@@ -52,11 +52,7 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
 	}
 
 	public func display(_ viewModel: FeedErrorViewModel) {
-//		if let message = viewModel.message {
-			// error.show
-//		} else {
-			// error.hide
-//		}
+		errorView?.message = viewModel.message
 	}
 
 	public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
