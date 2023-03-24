@@ -322,7 +322,7 @@ final class FeedUIIntegrationTests: XCTestCase {
 		line: UInt = #line
 	) -> (sut: FeedViewController, loader: LoaderSpy) {
 		let loader = LoaderSpy()
-		let sut = FeedUIComposer.feedComposedWith(feedLoader: loader, imageLoader: loader)
+		let sut = FeedUIComposer.feedComposedWith(feedLoader: loader.loadPublisher, imageLoader: loader)
 
 		trackForMemoryLeaks(loader, file: file, line: line)
 		trackForMemoryLeaks(sut, file: file, line: line)
@@ -338,7 +338,7 @@ final class FeedUIIntegrationTests: XCTestCase {
 	) {
 		sut.tableView.layoutIfNeeded()
 		RunLoop.main.run(until: Date())
-		
+
 		guard sut.numberOfRenderedFeedImageViews() == feed.count else {
 			XCTFail("Expected \(feed.count) images, got \(sut.numberOfRenderedFeedImageViews())" , file: file, line: line)
 			return
