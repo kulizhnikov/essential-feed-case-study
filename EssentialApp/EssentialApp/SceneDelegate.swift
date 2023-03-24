@@ -48,16 +48,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	}
 
 	func configureWindow() {
-		let remoteImageLoader = RemoteFeedImageDataLoader(client: httpClient)
-		let localImageLoader = LocalFeedImageDataLoader(store: store)
-
 		let feedViewController = UINavigationController(
 			rootViewController: FeedUIComposer.feedComposedWith(
 				feedLoader: makeRemoteFeedLoaderWithLocalFallback,
-				imageLoader: FeedImageDataLoaderWithFallbackComposite(
-					primary: localImageLoader,
-					fallback: FeedImageDataLoaderCacheDecorator(decoratee: remoteImageLoader, cache: localImageLoader)
-				)
+				imageLoader: makeLocalImageLoaderWithRemoteFallback
 			)
 		)
 
@@ -81,7 +75,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			.fallback(to: localFeedLoader.loadPublisher)
 	}
 
+	private func makeLocalImageLoaderWithRemoteFallback(url: URL) -> FeedImageDataLoader.Publisher {
+		let remoteImageLoader = RemoteFeedImageDataLoader(client: httpClient)
+		let localImageLoader = LocalFeedImageDataLoader(store: store)
 
+		return localImageLoader
+			.loadImageDataPublisher(from: url)
+			.fallback(to: {
+				remoteImageLoader
+					.loadImageDataPublisher(from: url)
+					.caching(to: localImageLoader, using: url)
+			})
+	}
 }
 
 public extension FeedLoader {
@@ -100,6 +105,36 @@ extension Publisher where Output == [FeedImage] {
 		handleEvents(receiveOutput: cache.saveIgnoringResult).eraseToAnyPublisher()
 	}
 }
+
+public extension FeedImageDataLoader {
+	typealias Publisher = AnyPublisher<Data, Error>
+
+	func loadImageDataPublisher(from url: URL) -> Publisher {
+		var task: FeedImageDataLoaderTask?
+
+		return Deferred {
+			Future { completion in
+				task = self.loadImageData(from: url, completion: completion)
+			}
+		}
+		.handleEvents(receiveCancel: { task?.cancel() })
+		.eraseToAnyPublisher()
+	}
+}
+
+extension Publisher where Output == Data {
+	 func caching(to cache: FeedImageDataCache, using url: URL) -> AnyPublisher<Output, Failure> {
+		 handleEvents(receiveOutput: { data in
+			 cache.saveIgnoringResult(data, for: url)
+		 }).eraseToAnyPublisher()
+	 }
+ }
+
+ private extension FeedImageDataCache {
+	 func saveIgnoringResult(_ data: Data, for url: URL) {
+		 save(data, for: url) { _ in }
+	 }
+ }
 
 private extension FeedCache {
 	func saveIgnoringResult(_ feed: [FeedImage]) {
