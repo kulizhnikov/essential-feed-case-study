@@ -77,7 +77,7 @@ extension Publisher {
 extension DispatchQueue {
 
 	static var immediateWhenOnMainQueueScheduler: ImmediateWhenOnMainQueueScheduler {
-		ImmediateWhenOnMainQueueScheduler.shared
+		ImmediateWhenOnMainQueueScheduler.shared 
 	}
 
 	struct ImmediateWhenOnMainQueueScheduler: Scheduler {
