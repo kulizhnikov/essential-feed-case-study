@@ -71,9 +71,4 @@ final class LoadItemsMapperTests: XCTestCase {
 		].compactMapValues { $0 }
 		return (item, json)
 	}
-
-	private func makeItemsJSON(_ items: [[String: Any]]) -> Data {
-		let json = ["items": items]
-		return try! JSONSerialization.data(withJSONObject: json)
-	}
 }
