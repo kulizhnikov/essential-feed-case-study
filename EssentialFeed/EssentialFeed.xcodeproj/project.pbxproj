@@ -468,7 +468,6 @@
 		6B56B6CF29B8D1B2000B9B1F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6B56B6C529B769A1000B9B1F /* ListViewController.swift */,
 				6B56B6E529B8E67A000B9B1F /* FeedImageCellController.swift */,
 			);
 			path = Controllers;
@@ -479,12 +478,9 @@
 			children = (
 				6B56B6C729B7B296000B9B1F /* FeedImageCell.swift */,
 				6B56B6C929B7D3E0000B9B1F /* UIVIew+Shimmering.swift */,
-				6B5EA75929BE6ACF00BF5F07 /* UITableView+Dequeueing.swift */,
 				6B5EA75B29BE6BEE00BF5F07 /* UIImageView+Animations.swift */,
 				6B5EA75129BE4FF000BF5F07 /* Feed.xcassets */,
 				6B5EA75729BE53F600BF5F07 /* Feed.storyboard */,
-				6B383C8B29C3B5CA002E7D50 /* ErrorView.swift */,
-				6B6A0AE329CCE468006581DC /* UITableView+HeaderSizing.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -655,6 +651,41 @@
 			path = "Image Comments Presentation";
 			sourceTree = "<group>";
 		};
+		6BF1A47229D8599B00A61149 /* Shared UI */ = {
+			isa = PBXGroup;
+			children = (
+				6BF1A47429D859C500A61149 /* View */,
+				6BF1A47329D859AA00A61149 /* Controllers */,
+			);
+			path = "Shared UI";
+			sourceTree = "<group>";
+		};
+		6BF1A47329D859AA00A61149 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6B56B6C529B769A1000B9B1F /* ListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6BF1A47429D859C500A61149 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6BF1A47529D859E400A61149 /* Helpers */,
+				6B383C8B29C3B5CA002E7D50 /* ErrorView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6BF1A47529D859E400A61149 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6B5EA75929BE6ACF00BF5F07 /* UITableView+Dequeueing.swift */,
+				6B6A0AE329CCE468006581DC /* UITableView+HeaderSizing.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		6BF5F5D029B2908D007C2218 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
@@ -688,6 +719,7 @@
 		6BF5F5F829B52B52007C2218 /* EssentialFeediOS */ = {
 			isa = PBXGroup;
 			children = (
+				6BF1A47229D8599B00A61149 /* Shared UI */,
 				6B56B6CE29B8D1A8000B9B1F /* Feed UI */,
 			);
 			path = EssentialFeediOS;
