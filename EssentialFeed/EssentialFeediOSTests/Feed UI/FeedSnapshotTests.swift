@@ -40,7 +40,6 @@ class FeedSnapshotTests: XCTestCase {
 		return controller
 	}
 
-
 	private func feedWithContent() -> [ImageStub] {
 		return [
 			ImageStub(
