@@ -96,7 +96,7 @@ final class CommentsUIIntegrationTests: FeedUIIntegrationTests {
 		assertThat(sut, isRendering: [comment])
 	}
 
-	override func test_loadFeedCompletion_rendersErrorMessageOnErrorUntilNextReload() {
+	func test_loadCommentsCompletion_rendersErrorMessageOnErrorUntilNextReload() {
 		let (sut, loader) = makeSUT()
 
 		sut.loadViewIfNeeded()
@@ -122,7 +122,7 @@ final class CommentsUIIntegrationTests: FeedUIIntegrationTests {
 		XCTAssertEqual(sut.errorMessage, nil)
 	}
 
-	override func test_loadFeedCompletion_dispatchesFromBackgroundToMainThread() {
+	func test_loadCommentsCompletion_dispatchesFromBackgroundToMainThread() {
 		let (sut, loader) = makeSUT()
 		sut.loadViewIfNeeded()
 
