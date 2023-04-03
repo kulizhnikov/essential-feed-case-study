@@ -55,6 +55,13 @@ final class FeedAcceptanceTests: XCTestCase {
 		XCTAssertNotNil(store.feedCache, "Expected to keep non-expired cache")
 	}
 
+	func test_onImageSelection_displaysComments() {
+		let commentsVC = showCommentsForFirstImage()
+
+		XCTAssertEqual(commentsVC.numberOfRenderedComments(), 1)
+		XCTAssertEqual(commentsVC.commentMessage(at: 0), makeCommentMessage())
+	}
+
 	// MARK: - Helpers
 
 	private func launch(
@@ -69,6 +76,16 @@ final class FeedAcceptanceTests: XCTestCase {
 		let feed = nav?.topViewController as! ListViewController
 
 		return feed
+	}
+
+	private func showCommentsForFirstImage() -> ListViewController {
+		let feed = launch(httpClient: .online(response), store: .empty)
+
+		feed.simulateTapOnFeedImage(at: 0)
+		RunLoop.current.run(until: Date())
+
+		let navigationController = feed.navigationController
+		return navigationController?.topViewController as! ListViewController
 	}
 
 	private func enterBackground(with store: InMemoryFeedStore) {
@@ -155,6 +172,9 @@ final class FeedAcceptanceTests: XCTestCase {
 		case "http://image.com":
 			return makeImageData()
 
+		case "https://ile-api.essentialdeveloper.com/essential-feed/v1/image/37E42B97-DC81-4263-B352-F1F7240D7DD6/comments":
+			return makeCommentsData()
+
 		default:
 			return makeFeedData()
 		}
@@ -166,9 +186,26 @@ final class FeedAcceptanceTests: XCTestCase {
 
 	private func makeFeedData() -> Data {
 		return try! JSONSerialization.data(withJSONObject: ["items": [
-			["id": UUID().uuidString, "image": "http://image.com"],
-			["id": UUID().uuidString, "image": "http://image.com"]
+			["id": "37E42B97-DC81-4263-B352-F1F7240D7DD6", "image": "http://image.com"],
+			["id": "1AAAB4B5-C687-4BE3-859A-7C11D987D4E9", "image": "http://image.com"]
 		]])
+	}
+
+	private func makeCommentsData() -> Data {
+		return try! JSONSerialization.data(withJSONObject: ["items": [
+			[
+				"id": UUID().uuidString,
+				"message": makeCommentMessage(),
+				"created_at": "2020-05-20T11:24:59+0000",
+				"author": [
+					"username": "a username",
+				]
+			],
+		]])
+	}
+
+	private func makeCommentMessage() -> String {
+		"a message"
 	}
 
 }
